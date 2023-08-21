@@ -27,14 +27,13 @@ Takes an `input` and if the value is `defined` (!undefined) then outputs the `in
 - `true` - "true" if the input is `undefined`.
 - `false` - value of the input if the input is not `undefined`.
 
-
 ### The `headTail` node
 
 Takes a list as `input` and returns the first item as the head, and the rest of the list as tail.
 
 #### Inputs:
 
-- `input` required, must contain the OpenAI API key.
+- `input` optional. The array to split in to 1 head and the remaining nodes.
 
 #### Outputs:
 
@@ -70,3 +69,30 @@ classDef slotted stroke:#a64d79
 ```
 
 Which will output `[ { text: 1 }, { text: 2 }, { text: 3 }, { text: 4 } ]`
+
+### The `take` node
+
+Takes a list as `input` and returns the first `count` items.
+
+#### Inputs:
+
+- `input` required, the array to have `count` items taken from it.
+- `count` required, the number of items to take from the input array.
+
+#### Outputs:
+
+- `output` - the first `count` items in the list
+
+
+### The `take` node
+
+Takes a list as `input` and removes the first `count` items.
+
+#### Inputs:
+
+- `input` required, the array to have `count` items taken from it.
+- `count` required, the number of items to take from the input array.
+
+#### Outputs:
+
+- `output` -  `length` - `count` items in the list, starting at `count`
