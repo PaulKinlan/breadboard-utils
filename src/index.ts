@@ -14,17 +14,19 @@ import type {
   OptionalIdConfiguration,
 } from "@google-labs/breadboard";
 
-import generateCompletion from "./nodes/generate-completion.js";
+import headTail from "./nodes/head.js";
+import undefinedGuard from "./nodes/undefinedGuard.js";
 
 const coreHandlers = {
-  generateCompletion
+  headTail,
+  undefinedGuard
 };
 
 /**
  * Syntactic sugar around the `coreHandlers` library.
  */
-export class OpenAI implements Kit {
-  url = "npm:@paulkinlan/openai-breadboard-kit";
+export class Utils implements Kit {
+  url = "npm:@paulkinlan/breadboard-utils-kit";
   #nodeFactory: NodeFactory;
   #handlers: NodeHandlers;
 
@@ -37,12 +39,19 @@ export class OpenAI implements Kit {
     this.#handlers = coreHandlers;
   }
 
-  generateCompletion(
+  headTail(
     config: OptionalIdConfiguration = {}
   ): BreadboardNode {
     const { $id, ...rest } = config;
-    return this.#nodeFactory("generateCompletion", { ...rest }, $id);
+    return this.#nodeFactory("headTail", { ...rest }, $id);
+  }
+
+  undefinedGuard(config: OptionalIdConfiguration = {}
+  ): BreadboardNode {
+    const { $id, ...rest } = config;
+    return this.#nodeFactory("undefinedGuard", { ...rest }, $id);
   }
 }
 
-export type GenerateCompletionNodeType = ReturnType<OpenAI["generateCompletion"]>;
+export type HeadTailNodeType = ReturnType<Utils["headTail"]>;
+export type UndefinedGuardNodeType = ReturnType<Utils["undefinedGuard"]>;
