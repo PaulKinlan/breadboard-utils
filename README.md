@@ -1,48 +1,70 @@
-# "Google Labs Breadboard" Kit for the OpenAI API
+# "Google Labs Breadboard" Useful nodes by Paul Kinlan Kit 
 
-The OpenAI Breadboard Kit is a collection of [Breadboard](https://github.com/google/labs-prototypes/tree/main/seeds/breadboard) nodes that are helpful for building LLM-based (Generative AI) applications using the OpenAI API.
+This is a collection of [Breadboard](https://github.com/google/labs-prototypes/tree/main/seeds/breadboard) nodes that are helpful for building LLM-based (Generative AI) applications.
 
 ## Installing
 
-OpenAI Breadboard Kit requires Node version >=v19.0.0. To install:
+This Kit requires Node version >=v19.0.0. To install:
 
 ```sh
-npm install @paulkinlan/openai-breadboard-kit
+npm install @paulkinlan/breadboard-utils-kit
 ```
 
 ## Node Types
 
 Here are all node handlers that are included in the OpenAI Breadboard Kit
 
-### The `generateCompletion` node
+### The `undefinedGuard` node
 
-This is an [OpenAI API](https://platform.openai.com/docs) text completion node. To produce useful output, the node needs an `OPENAI_API_KEY` input and the `text` input and the `model` to run it against.
-
-#### Example:
-
-Given this input:
-
-```json
-{
-  "OPENAI_API_KEY": "<your API key>",
-  "text": "How much wood can a woodchuck chuck?"
-}
-```
-
-The node will produce this output:
-
-```json
-{
-  "completion": "The exact amount a woodchuck can chuck is unknown, but it is believed that they can chuck about 700 pounds of wood in a day."
-}
-```
+Takes an `input` and if the value is `defined` (!undefined) then outputs the `input` on the false. If the value is `undefined` outputs `true` on "true" 
 
 #### Inputs:
 
-- `OPENAI_API_KEY` required, must contain the OpenAI API key.
-- `text` required, sent as the prompt for the completion.
-- `model` the name of the model OpenAI that you want to use.
+- `input` optional. The value to be checked if undefined.
 
 #### Outputs:
 
-- `completion` - result of the OpenAI API text completion.
+- `true` - "true" if the input is `undefined`.
+- `false` - value of the input if the input is not `undefined`.
+
+
+### The `headTail` node
+
+Takes a list as `input` and returns the first item as the head, and the rest of the list as tail.
+
+#### Inputs:
+
+- `input` required, must contain the OpenAI API key.
+
+#### Outputs:
+
+- `head` - the first item in the list
+- `tail` - the rest of the input list (`slice(1)`)
+
+## Example graph
+
+```mermaid
+%%{init: 'themeVariables': { 'fontFamily': 'Fira Code, monospace' }}%%
+graph TD;
+inputprompt[/"input
+id='input-prompt'"/]:::input -- "input->input" --> headTail1["headTail
+id='headTail-1'"]
+headTail1["headTail
+id='headTail-1'"] -- "tail->input" --> undefinedGuard1["undefinedGuard
+id='undefinedGuard-1'"]
+headTail1["headTail
+id='headTail-1'"] -- "head->text" --> output{{"output
+id='output'"}}:::output
+undefinedGuard1["undefinedGuard
+id='undefinedGuard-1'"] -- "false->input" --> headTail1["headTail
+id='headTail-1'"]
+messageinputprompt[message]:::config -- "message->message" --o inputprompt
+classDef default stroke:#ffab40,fill:#fff2ccff,color:#000
+classDef input stroke:#3c78d8,fill:#c9daf8ff,color:#000
+classDef output stroke:#38761d,fill:#b6d7a8ff,color:#000
+classDef passthrough stroke:#a64d79,fill:#ead1dcff,color:#000
+classDef slot stroke:#a64d79,fill:#ead1dcff,color:#000
+classDef config stroke:#a64d79,fill:#ead1dcff,color:#000
+classDef secrets stroke:#db4437,fill:#f4cccc,color:#000
+classDef slotted stroke:#a64d79
+```
