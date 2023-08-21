@@ -68,3 +68,5 @@ classDef config stroke:#a64d79,fill:#ead1dcff,color:#000
 classDef secrets stroke:#db4437,fill:#f4cccc,color:#000
 classDef slotted stroke:#a64d79
 ```
+
+Which will output `[ { text: 1 }, { text: 2 }, { text: 3 }, { text: 4 } ]`
