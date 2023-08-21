@@ -22,5 +22,5 @@ export default async (inputs: InputValues): Promise<GuardOutputs> => {
   const { input } = inputs as GuardInputs;
   const isUndefined = input == undefined || input.length == 0;
 
-  return { "true": isUndefined ? input : undefined, "false": !isUndefined ? input : undefined }
+  return { "true": isUndefined ? true : undefined, "false": !isUndefined ? input : undefined };
 };
