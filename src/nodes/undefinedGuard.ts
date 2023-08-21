@@ -12,9 +12,6 @@ export type GuardOutputs = OutputValues & {
 };
 
 export type GuardInputs = InputValues & {
-  /**
-   * The model to use for text completion.
-   */
   input: any;
 };
 

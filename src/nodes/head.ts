@@ -12,11 +12,7 @@ export type HeadTailOutputs = OutputValues & {
 };
 
 export type HeadTailInputs = InputValues & {
-  /**
-   * The model to use for text completion.
-   */
   input: any[];
-
 };
 
 export default async (inputs: InputValues): Promise<HeadTailOutputs> => {

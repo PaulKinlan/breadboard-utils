@@ -49,3 +49,31 @@ for await (const result of itterateBoard.run()) {
 }
 
 console.log("Iteration result", outputs);
+
+// Outputs just the take
+const takeBoard = await Board.load(
+  path.join(process.cwd(), "graphs", "take.json")
+);
+
+takeBoard.addKit(Utils);
+
+const takeResult = await takeBoard.runOnce({
+  input: [1, 2, 3, 4, 5],
+  count: 2
+});
+
+console.log("Take Result", takeResult);
+
+// Outputs just the take
+const dropBoard = await Board.load(
+  path.join(process.cwd(), "graphs", "drop.json")
+);
+
+dropBoard.addKit(Utils);
+
+const dropResult = await dropBoard.runOnce({
+  input: [1, 2, 3, 4, 5],
+  count: 2
+});
+
+console.log("Drop Result", dropResult);
