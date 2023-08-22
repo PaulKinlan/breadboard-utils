@@ -8,7 +8,7 @@
     },
     {
       "from": "headTail-1",
-      "to": "undefinedGuard-1",
+      "to": "headTail-1",
       "out": "tail",
       "in": "input"
     },
@@ -18,21 +18,11 @@
       "out": "head",
       "in": "text"
     },
-    {
-      "from": "undefinedGuard-1",
-      "to": "headTail-1",
-      "out": "false",
-      "in": "input"
-    }
   ],
   "nodes": [
     {
       "id": "headTail-1",
       "type": "headTail"
-    },
-    {
-      "id": "undefinedGuard-1",
-      "type": "undefinedGuard"
     },
     {
       "id": "input-prompt",
@@ -44,11 +34,6 @@
     {
       "id": "output",
       "type": "output"
-    }
-  ],
-  "kits": [
-    {
-      "url": "npm:@google-labs/llm-starter"
     }
   ]
 }
