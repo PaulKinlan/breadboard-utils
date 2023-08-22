@@ -58,6 +58,8 @@ test('iterate-will-fail', async (t) => {
 
   iterateBoard.addKit(Utils);
 
+  console.log(iterateBoard.mermaid())
+
   const outputs = []
 
   for await (const result of iterateBoard.run()) {

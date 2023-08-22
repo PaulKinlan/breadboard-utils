@@ -8,8 +8,14 @@
     },
     {
       "from": "headTail-1",
-      "to": "headTail-1",
+      "to": "passthrough",
       "out": "tail",
+      "in": "input"
+    },
+    {
+      "from": "passthrough",
+      "to": "headTail-1",
+      "out": "input",
       "in": "input"
     },
     {
@@ -23,6 +29,10 @@
     {
       "id": "headTail-1",
       "type": "headTail"
+    },
+    {
+      "id": "passthrough",
+      "type": "passthrough"
     },
     {
       "id": "input-prompt",

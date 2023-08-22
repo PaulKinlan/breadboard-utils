@@ -1,6 +1,6 @@
 {
   "name": "@paulkinlan/breadboard-utils-kit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Kit with useful nodes for Breadboard.",
   "main": "./dist/src/index.js",
   "exports": "./dist/src/index.js",
