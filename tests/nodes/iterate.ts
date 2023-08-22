@@ -23,8 +23,6 @@ test('iterate-with-guard', async (t) => {
     }
   }
 
-  console.log("Iteration result", outputs);
-
   t.is(outputs.length, 4);
 });
 
@@ -37,12 +35,9 @@ test('iterate', async (t) => {
 
   iterateBoard.addKit(Utils);
 
-  // console.log(iterateBoard.mermaid())
-
   const outputs = []
 
   for await (const result of iterateBoard.run()) {
-    console.log("Results", result)
     if (result.seeksInputs) {
       result.inputs = { input: [1, 2, 3, 4] };
 
@@ -63,12 +58,9 @@ test('iterate-will-fail', async (t) => {
 
   iterateBoard.addKit(Utils);
 
-  // console.log(iterateBoard.mermaid())
-
   const outputs = []
 
   for await (const result of iterateBoard.run()) {
-    console.log("Results", result)
     if (result.seeksInputs) {
       result.inputs = { input: [1, 2, 3, 4] };
 
@@ -77,8 +69,6 @@ test('iterate-will-fail', async (t) => {
       outputs.push(result.outputs);
     }
   }
-
-  console.log("Iteration result", outputs);
 
   t.is(outputs.length, 4)
 });

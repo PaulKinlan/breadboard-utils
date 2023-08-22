@@ -17,7 +17,7 @@
       "to": "output",
       "out": "head",
       "in": "text"
-    },
+    }
   ],
   "nodes": [
     {
