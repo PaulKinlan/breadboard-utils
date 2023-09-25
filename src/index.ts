@@ -5,7 +5,9 @@
  */
 
 import {
-  NodeHandlers
+  InputValues,
+  NodeHandlers,
+  OutputValues,
 } from "@google-labs/graph-runner";
 import type {
   BreadboardNode,
@@ -14,10 +16,10 @@ import type {
   OptionalIdConfiguration,
 } from "@google-labs/breadboard";
 
-import headTail from "./nodes/head.js";
-import take from "./nodes/take.js";
-import drop from "./nodes/drop.js";
-import undefinedGuard from "./nodes/undefinedGuard.js";
+import headTail, { HeadTailInputs, HeadTailOutputs } from "./nodes/head.js";
+import take, { TakeInputs, TakeOutputs } from "./nodes/take.js";
+import drop, { DropInputs, DropOutputs } from "./nodes/drop.js";
+import undefinedGuard, { GuardInputs, GuardOutputs } from "./nodes/undefinedGuard.js";
 
 const coreHandlers = {
   drop,
@@ -43,31 +45,31 @@ export class Utils implements Kit {
     this.#handlers = coreHandlers;
   }
 
-  drop(
+  drop<In = DropInputs, Out = DropOutputs>(
     config: OptionalIdConfiguration = {}
-  ): BreadboardNode {
+  ): BreadboardNode<In, Out> {
     const { $id, ...rest } = config;
-    return this.#nodeFactory("drop", { ...rest }, $id);
+    return this.#nodeFactory.create("drop", { ...rest }, $id);
   }
 
-  headTail(
+  headTail<In = HeadTailInputs, Out = HeadTailOutputs>(
     config: OptionalIdConfiguration = {}
-  ): BreadboardNode {
+  ): BreadboardNode<In, Out> {
     const { $id, ...rest } = config;
-    return this.#nodeFactory("headTail", { ...rest }, $id);
+    return this.#nodeFactory.create("headTail", { ...rest }, $id);
   }
 
-  take(
+  take<In = TakeInputs, Out = TakeOutputs>(
     config: OptionalIdConfiguration = {}
-  ): BreadboardNode {
+  ): BreadboardNode<In, Out> {
     const { $id, ...rest } = config;
-    return this.#nodeFactory("take", { ...rest }, $id);
+    return this.#nodeFactory.create("take", { ...rest }, $id);
   }
 
-  undefinedGuard(config: OptionalIdConfiguration = {}
-  ): BreadboardNode {
+  undefinedGuard<In = GuardInputs, Out = GuardOutputs>(config: OptionalIdConfiguration = {}
+  ): BreadboardNode<In, Out> {
     const { $id, ...rest } = config;
-    return this.#nodeFactory("undefinedGuard", { ...rest }, $id);
+    return this.#nodeFactory.create("undefinedGuard", { ...rest }, $id);
   }
 }
 

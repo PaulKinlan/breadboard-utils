@@ -14,11 +14,11 @@ test('iterate-with-guard', async (t) => {
   const outputs = [];
 
   for await (const result of iterateBoard.run()) {
-    if (result.seeksInputs) {
+    if (result.type == "input") {
       result.inputs = { input: [1, 2, 3, 4] };
 
     }
-    else {
+    else if(result.type == "output") {
       outputs.push(result.outputs);
     }
   }
@@ -38,11 +38,11 @@ test('iterate', async (t) => {
   const outputs = []
 
   for await (const result of iterateBoard.run()) {
-    if (result.seeksInputs) {
+    if (result.type == "input") {
       result.inputs = { input: [1, 2, 3, 4] };
 
     }
-    else {
+    else if(result.type == "output") {
       outputs.push(result.outputs);
     }
   }
@@ -63,11 +63,10 @@ test('iterate-will-fail', async (t) => {
   const outputs = []
 
   for await (const result of iterateBoard.run()) {
-    if (result.seeksInputs) {
+    if (result.type == "input") {
       result.inputs = { input: [1, 2, 3, 4] };
-
     }
-    else {
+    else if(result.type == "output") {
       outputs.push(result.outputs);
     }
   }
